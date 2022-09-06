@@ -13,6 +13,7 @@ const Calendar = () => {
   const dateClickHandler = day => {
     console.log(day);
     console.log(todayFormatted);
+    console.log(day.split(/\s+/).join('') === todayFormatted.split(/\s+/).join(''))
   };
   return (
     <div className={s.container}>
@@ -38,7 +39,7 @@ const Calendar = () => {
                     <td
                       key={col.date}
                       className={
-                        s.activeCell                        
+                        s.today              
                       }
                       onClick={() => dateClickHandler(col.date)}
                     >
@@ -57,8 +58,8 @@ const Calendar = () => {
                     <td
                       key={col.date}
                       className={
-                       s.cell
-                      }
+                        s.cell 
+                     }
                       onClick={() => dateClickHandler(col.date)}
                     >
                       <div className={s.info}>

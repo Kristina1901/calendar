@@ -27,12 +27,12 @@
     display: flex;
     justify-content: space-between;
 }
-.activeCell {
+.today {
     width: 50px;
     height: 80px;
     border: 1px solid #ddd;
     padding: 5px;
-    background-color:red;
+    background-color: #ceffbc;
 }
 .prev {
     background-image: url('./img/back.png');

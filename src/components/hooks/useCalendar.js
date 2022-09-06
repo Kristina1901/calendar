@@ -3,7 +3,7 @@ import { useState } from 'react';
  'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']  
 function useCalendar(monthNames =monthArray) {
     const today = new Date();
-    const todayFormatted = `${today.getDate()} - ${today.getMonth() + 1} - ${today.getFullYear()}`
+    const todayFormatted = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
     const daysInWeek = [1,2,3,4,5,6,0]
     const [selectedDate, setSelectedDate] = useState(today)
     const selectedMonthLastDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth()+ 1, 0)
