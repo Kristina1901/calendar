@@ -1,9 +1,9 @@
 import { useState } from 'react';
-  const monthArray =['January', 'February', 'March', 'April', 
+ const monthArray =['January', 'February', 'March', 'April', 
  'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']  
-function useCalendar(monthNames =monthArray) {
+function useCalendar(monthNames=monthArray) {
     const today = new Date();
-    const todayFormatted = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
+    const todayFormatted = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`.split(/\s+/).join('')
     const daysInWeek = [1,2,3,4,5,6,0]
     const [selectedDate, setSelectedDate] = useState(today)
     const selectedMonthLastDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth()+ 1, 0)
@@ -27,17 +27,18 @@ function useCalendar(monthNames =monthArray) {
                 calendarRows[i] =[...calendarRows[i], {
                     classes: 'in-prev-month',
                     date: `${selectedDate.getMonth() === 0? selectedDate.getFullYear() - 1: selectedDate.getFullYear()}
-                    -${selectedDate.getMonth()===0? 12: selectedDate.getMonth()}-${prevMonthStartingPoint}`,
+                    -${selectedDate.getMonth()===0? 12: selectedDate.getMonth()}-${prevMonthStartingPoint}`.split(/\s+/).join(''),
                     value: prevMonthStartingPoint,
+                    text:''
                                  
                 }]
                 prevMonthStartingPoint++;
             } else {
                 calendarRows[i] =[...calendarRows[i], {
                     classes: '',
-                    date: `${selectedDate.getFullYear()}-${selectedMonthLastDate.getMonth() + 1}-${currentMonthCounter}`,
+                    date: `${selectedDate.getFullYear()}-${selectedMonthLastDate.getMonth() + 1}-${currentMonthCounter}`.split(/\s+/).join(''),
                     value: currentMonthCounter,
-                   
+                    text:''
                                         
                 }]
                 currentMonthCounter++
@@ -45,14 +46,15 @@ function useCalendar(monthNames =monthArray) {
           }  else if(i > 1 && currentMonthCounter < daysInMonth + 1) {
             calendarRows[i] =[...calendarRows[i], {
                 classes: '',
-                date: `${selectedDate.getFullYear()}-${selectedDate.getMonth() + 1}-${currentMonthCounter}`,
-                value: currentMonthCounter
+                date: `${selectedDate.getFullYear()}-${selectedDate.getMonth() + 1}-${currentMonthCounter}`.split(/\s+/).join(''),
+                value: currentMonthCounter,
+                text:''
             }];
             currentMonthCounter++
         }else{
             calendarRows[i] =[...calendarRows[i], {
                 classes: 'in-next-month',
-                date: `${selectedDate.getMonth()+2 === 13 ? selectedDate.getFullYear()+ 1 : selectedDate.getFullYear()}-${selectedDate.getMonth()+ 2 ===13? 1 : selectedDate.getMonth() + 2}-${nextMonthCounter}`
+                date: `${selectedDate.getMonth()+2 === 13 ? selectedDate.getFullYear()+ 1 : selectedDate.getFullYear()}-${selectedDate.getMonth()+ 2 ===13? 1 : selectedDate.getMonth() + 2}-${nextMonthCounter}`.split(/\s+/).join('')
             }];
             nextMonthCounter++;
         }
@@ -66,6 +68,7 @@ function useCalendar(monthNames =monthArray) {
        
     }
     return {
+        today,
         monthNames,
         todayFormatted,
         calendarRows, 
