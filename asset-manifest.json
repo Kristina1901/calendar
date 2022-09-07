@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.css": "/react-homework-template/static/css/main.a52af8ad.css",
-    "main.js": "/react-homework-template/static/js/main.f38b03a6.js",
+    "main.css": "/react-homework-template/static/css/main.25e3e1b1.css",
+    "main.js": "/react-homework-template/static/js/main.2297837e.js",
     "static/media/timetable.png": "/react-homework-template/static/media/timetable.0e0091736c8dc96ca846.png",
     "static/media/back.png": "/react-homework-template/static/media/back.7119976ff6566cbac370.png",
     "static/media/next.png": "/react-homework-template/static/media/next.1d2ef3ff50c4df6f2868.png",
+    "static/media/plus.png": "/react-homework-template/static/media/plus.b3120687d3118e5ed136.png",
     "index.html": "/react-homework-template/index.html",
-    "main.a52af8ad.css.map": "/react-homework-template/static/css/main.a52af8ad.css.map",
-    "main.f38b03a6.js.map": "/react-homework-template/static/js/main.f38b03a6.js.map"
+    "static/media/close.svg": "/react-homework-template/static/media/close.2870307db091124a2103.svg",
+    "main.25e3e1b1.css.map": "/react-homework-template/static/css/main.25e3e1b1.css.map",
+    "main.2297837e.js.map": "/react-homework-template/static/js/main.2297837e.js.map"
   },
   "entrypoints": [
-    "static/css/main.a52af8ad.css",
-    "static/js/main.f38b03a6.js"
+    "static/css/main.25e3e1b1.css",
+    "static/js/main.2297837e.js"
   ]
 }
