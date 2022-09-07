@@ -1,6 +1,7 @@
-import Calendar from "./components/Calendar";
+import Calendar from "./components/Calendar/Calendar";
+
 export const App = () => {
-  return (
+   return (
     <div>
       <Calendar/>
     </div>
