@@ -2,6 +2,7 @@ import React from 'react';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import Form from '../Form/Form';
+import FullForm from '../FullForm/FullForm';
 import s from './Modal.module.css';
 const customStyles = {
   width: '300px',
@@ -16,7 +17,7 @@ const customStyles = {
   position: 'absolute',
 };
 
-function Modal({ trigger, onClose, findKey, getUpdate }) {
+function Modal({ trigger, onClose, findKey, getUpdate, some, fieldTitle, fieldMessage,fieldDay,fieldTime}) {
   return (
     <div>
       <Rodal
@@ -26,7 +27,9 @@ function Modal({ trigger, onClose, findKey, getUpdate }) {
         customStyles={customStyles}
       >
       <div className={s.button} onClick={onClose}></div>
-      <Form findKey={findKey} getUpdate={getUpdate}/>
+      {some=== true? <FullForm fieldTitle={fieldTitle} fieldMessage={fieldMessage} fieldDay={fieldDay} 
+      fieldTime={fieldTime} findKey={findKey} onClose={onClose}/> 
+      : <Form findKey={findKey} getUpdate={getUpdate}/>}
       </Rodal>
     </div>
   );
