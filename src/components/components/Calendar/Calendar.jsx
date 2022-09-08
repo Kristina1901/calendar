@@ -119,7 +119,7 @@ const Calendar = () => {
         </div>
         <div className={s.wrapperButton}>
           <button className={s.prev} onClick={getPrevMonth}></button>
-          <p>{`${
+          <p className={s.currentDate}>{`${
             monthNames[selectedDate.getMonth()]
           } ${selectedDate.getFullYear()}`}</p>
           <button className={s.next} onClick={getNextMonth}></button>
@@ -138,24 +138,24 @@ const Calendar = () => {
               <tr key={cols[0].date}>
                 {cols.map(col =>
                   col.date === todayFormatted ? (
-                    <td key={todayFormatted} className={s.today}>
+                    <td key={todayFormatted} className={s.today} onClick={()=> getFormField(col)}>
                       <div className={s.info}>
-                        <p>{col.value}</p>
+                        <p className={s.dateNumber}>{col.value}</p>
                         {col.value && (
-                          <p>{moment(new Date(col.date)).format('dd')}</p>
+                          <p className={s.day}>{moment(new Date(col.date)).format('dd')}</p>
                         )}
                       </div>
-                      <p>{col.text}</p>
+                      {col.text && <p className={s.notice}>{col.text}</p>}
                     </td>
                   ) : (
                     <td key={col.date} className={s.cell} onClick={()=> getFormField(col)}>
                       <div className={s.info}>
-                        <p>{col.value}</p>
+                        <p className={s.dateNumber}>{col.value}</p>
                         {col.value && (
-                          <p>{moment(new Date(col.date)).format('dd')}</p>
+                          <p className={s.day}>{moment(new Date(col.date)).format('dd')}</p>
                         )}
                       </div>
-                      <p className={s.notice}>{col.text}</p>
+                      {col.text && <p className={s.notice}>{col.text}</p>}
                     </td>
                   )
                 )}

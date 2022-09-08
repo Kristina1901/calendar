@@ -13,26 +13,29 @@
     width: 100%;
     height: 100%;
     margin-top: 20px;
+    border-collapse: collapse;
+    table-layout: fixed; 
+    background: linear-gradient(to right, #314755, #26a0da);
     
 }
 .cell {
-    width: 50px;
+    width: 30px;
     height: 80px;
     border: 1px solid #ddd;
     padding: 5px;
     background-color: transparent;
-   
-}
+    }
 .info {
     display: flex;
     justify-content: space-between;
 }
 .today {
-    width: 50px;
+    width: 30px;
     height: 80px;
     border: 1px solid #ddd;
     padding: 5px;
-    background-color: #f1dcff;
+    background: linear-gradient(to right, #e65c00, #f9d423);
+   
 }
 .prev {
     background-image: url('./img/back.png');
@@ -82,10 +85,15 @@
 .notice {
     color: white;
     margin-top: 20px;
+    overflow: hidden;
+    padding: 5px;
+    background-color: darkmagenta;
+    border-radius: 5px;
 }
 p {
     color: black;
     margin: 0;
+   
 }
 .pick {
     background-image: url('./img/timetable\ \(1\).png');
@@ -99,4 +107,15 @@ p {
     margin-left: 5px;
     cursor: pointer;
       
+}
+.currentDate {
+    color: white;
+}
+.dateNumber {
+    color: white;
+}
+.day {
+    font-family: Qwitcher Grypen;
+    color: white;
+    font-size: 30px;
 }
