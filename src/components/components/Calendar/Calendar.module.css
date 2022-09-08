@@ -32,7 +32,7 @@
     height: 80px;
     border: 1px solid #ddd;
     padding: 5px;
-    background-color: #ceffbc;
+    background-color: #f1dcff;
 }
 .prev {
     background-image: url('./img/back.png');
@@ -61,19 +61,6 @@
     margin-right: 10px;
     
 }
-.pick {
-    background-image: url('./img/timetable.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 30px;
-    height: 30px;
-    border: none;
-    background-color: transparent;
-    margin-left: 5px;
-    cursor: pointer;
-      
-}
 .wrapperButton {
     display: flex;
     align-items: center;
@@ -93,8 +80,23 @@
     
 }
 .notice {
-    color: red
+    color: white;
+    margin-top: 20px;
 }
 p {
     color: black;
+    margin: 0;
+}
+.pick {
+    background-image: url('./img/timetable\ \(1\).png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    margin-left: 5px;
+    cursor: pointer;
+      
 }

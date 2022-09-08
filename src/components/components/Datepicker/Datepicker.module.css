@@ -1,0 +1,82 @@
+.container {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 100;
+    align-items: center;
+    position: fixed;
+    background-color: #ffff7a;
+    top:70px
+}
+.month {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    text-align: center;
+}
+.table {
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+    display: block;
+        
+}
+.cell {
+    min-width: 10px;
+    height: 4px;
+    background-color: transparent;
+    font-size: 12px;
+    border-radius: 10px;
+    
+   
+}
+.today {
+    min-width: 10px;
+    height: 4px;
+    background-color: #ceffbc;
+   
+}
+.prev {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: #d462a0;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+   
+    
+}
+.next {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: #d462a0;
+    margin-left: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+   
+    
+}
+.wrapperButton {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.notice {
+    color: red
+}
+p {
+    color: black;
+}
+td {
+    font-size: 12px;
+}
+tr {
+    height: 8px;
+}
+.day {
+    background-color: #77b4db;
+}

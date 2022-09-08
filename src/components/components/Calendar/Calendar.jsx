@@ -2,6 +2,7 @@ import useCalendar from '../../hooks/useCalendar';
 import moment from 'moment';
 import s from './Calendar.module.css';
 import Modal from '../Modal/Modal';
+import DatePicker from '../Datepicker/Datepicker';
 import { useState, useEffect, useRef} from 'react';
 const Calendar = () => {
   const {
@@ -15,50 +16,54 @@ const Calendar = () => {
   } = useCalendar();
   const refContainer = useRef(calendarRows);
     const [open, setOpen] = useState(false);
-    const [array, setArray] = useState(refContainer.current);
-    // const [copy, setCopy] = useState(calendarRows);
-     useEffect(() => {
-       if(localStorage.getItem(today.getMonth()) !== JSON.stringify(array) && selectedDate.getMonth()=== today.getMonth()) {
-        setArray(JSON.parse(localStorage.getItem(today.getMonth())))
-        console.log(JSON.parse(localStorage.getItem(today.getMonth())))
+    const [array, setArray] = useState({});
+    const [dropdown, setdropdown] = useState(false);
+    
+    useEffect(() => {
+      if (Object.keys(array).length === 0) {
+        setArray(refContainer.current)
       }
-       if(JSON.stringify(array) !== JSON.stringify(calendarRows) && selectedDate.getMonth()!== today.getMonth()) {
-        for (let i = 0; i < localStorage.length; i++)
-          if(localStorage.key(i) === selectedDate.getMonth().toString()){
-            setArray(JSON.parse(localStorage.getItem(selectedDate.getMonth().toString())))
-            
-           break
-           
-          
-          }
-          else {
-            setArray(calendarRows)
-          }
-      }
-                
-       
-      
-      // if(JSON.stringify(array) !== JSON.stringify(refContainer.current) && selectedDate.getMonth()=== today.getMonth()) {
-      //   localStorage.setItem(`${today.getMonth()}`, JSON.stringify(array))
-      //    console.log('hhhh')
-      
-        
-              
-       
-      // }
-      // if(selectedDate.getMonth()=== today.getMonth() && JSON.stringify(copy) !== JSON.stringify(refContainer)) {
-      //    setArray(copy)
-      //    console.log('y')
-      // }
-    //   if(JSON.stringify(array) !== JSON.stringify(refContainer.current)&& selectedDate.getMonth()=== today.getMonth()) {
-    //    setArray(refContainer.current)
-    //    console.log('lkji')
+    //    if(localStorage.getItem(today.getMonth()) !== JSON.stringify(array) && selectedDate.getMonth()=== today.getMonth()) {
+    //    setArray(JSON.parse(localStorage.getItem(today.getMonth())))
+    //    console.log('VVV')
     //  }
-     
+    //   if(refContainer.current!== calendarRows && selectedDate.getMonth()!== today.getMonth()) {
+    //     let k = JSON.parse(localStorage.getItem(selectedDate.getMonth().toString()))
+    //     if (k === null){
+    //       setArray(calendarRows)
+    //     }
+    //     else {
+    //       setArray(k)
+    //     }
       
+    //  }
+                    
+    //  if(JSON.stringify(array) === JSON.stringify(refContainer.current) && selectedDate.getMonth()=== today.getMonth()) {
+    //    setArray(JSON.parse(localStorage.getItem(today.getMonth().toString())))
+    //    console.log('Hi')
+    // } 
+     
+     // if(JSON.stringify(array) !== JSON.stringify(refContainer.current) && selectedDate.getMonth()=== today.getMonth()) {
+     //   localStorage.setItem(`${today.getMonth()}`, JSON.stringify(array))
+     //    console.log('hhhh')
+     
+       
+             
+      
+     // }
+     // if(selectedDate.getMonth()=== today.getMonth() && JSON.stringify(copy) !== JSON.stringify(refContainer)) {
+     //    setArray(copy)
+     //    console.log('y')
+     // }
+   //   if(JSON.stringify(array) !== JSON.stringify(refContainer.current)&& selectedDate.getMonth()=== today.getMonth()) {
+   //    setArray(refContainer.current)
+   //    console.log('lkji')
+   //  }
+    
+     
 
 
-    },[calendarRows,today,selectedDate, array]);
+   },[calendarRows,today,selectedDate, array]);
   const findKey = (key, title, time) => {
   let el = Object.values(calendarRows).flat().find(item =>(item.date === key))
   // localStorage.setItem(`${time}`, JSON.stringify(add()))
@@ -99,14 +104,8 @@ return {...newState}
     setOpen(!open);
    
   }
-  function g() {
-    getNextMonth()
-   
-   
-  }
-  function f() {
-    getPrevMonth()
-    
+  function openDropdown() {
+    setdropdown(true)
    
   }
    return (
@@ -116,14 +115,15 @@ return {...newState}
         <button className={s.event} onClick={closeModal}></button>
         </div>
         <div className={s.wrapperButton}>
-        <button className={s.prev} onClick={f}>
+        <button className={s.prev} onClick={getPrevMonth}>
         </button>
         <p>{`${
          monthNames[selectedDate.getMonth()]
         } ${selectedDate.getFullYear()}`}</p>
-        <button className={s.next} onClick={g}>
+        <button className={s.next} onClick={getNextMonth}>
         </button>
-        <button className={s.pick}></button>
+        <button className={s.pick} onClick={openDropdown}></button>
+        {dropdown && <DatePicker/>}
         </div>
         </div>
       <table className={s.table}>
