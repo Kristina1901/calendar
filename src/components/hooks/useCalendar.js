@@ -22,7 +22,7 @@ function useCalendar(monthNames = monthArray) {
     .join('');
   const daysInWeek = [1, 2, 3, 4, 5, 6, 0];
   const [selectedDate, setSelectedDate] = useState(today);
-  const selectedMonthLastDate = new Date(
+    const selectedMonthLastDate = new Date(
     selectedDate.getFullYear(),
     selectedDate.getMonth() + 1,
     0
