@@ -9,7 +9,6 @@ const Calendar = () => {
     calendarRows,
     selectedDate,
     todayFormatted,
-    monthNames,
     getNextMonth,
     getPrevMonth,
   } = useCalendar();
