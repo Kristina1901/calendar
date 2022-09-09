@@ -17,8 +17,6 @@ const Calendar = () => {
   const [open, setOpen] = useState(false);
   const [array, setArray] = useState(refContainer.current);
   const [dropdown, setdropdown] = useState(false);
-  const [date, setDate] = useState(null);
-  const [disabled, setDisable] = useState(false);
   const [some, setSome] = useState(false);
   const [fieldTitle, setFieltitle] = useState('');
   const [fieldMessage, setFielddMessage] = useState('');
@@ -34,11 +32,7 @@ const Calendar = () => {
       setArray(calendarRows)
       return;
     }
-    if (date !== null) {
-      setDisable(true);
-      setdropdown(false);
-    }
-    if (
+     if (
       localStorage.getItem(today.getMonth()) !== JSON.stringify(array) &&
       selectedDate.getMonth() === today.getMonth()
     ) {
@@ -66,7 +60,7 @@ const Calendar = () => {
     
    
     
-  }, [selectedDate, date]);
+  }, [selectedDate]);
   const findKey = (key, title, month, message, tictac) => {
     let el = Object.values(calendarRows)
       .flat()
@@ -102,9 +96,6 @@ const Calendar = () => {
     setSome(false);
     setOpen(!open);
   }
-  function openDropdown() {
-    setdropdown(true);
-  }
   function getFormField(item) {
     if (item.text !== undefined && item.text !== '') {
       closeModal();
@@ -131,10 +122,9 @@ const Calendar = () => {
           <button className={s.next} onClick={getNextMonth}></button>
           <button
             className={s.pick}
-            onClick={openDropdown}
-            disabled={disabled}
-          ></button>
-          {dropdown && <DatePicker date={date} setDate={setDate} />}
+            onClick={() =>setdropdown(true)}
+           ></button>
+          {dropdown && <DatePicker setArray={setArray} setdropdown={setdropdown}/>}
         </div>
       </div>
       <table className={s.table}>

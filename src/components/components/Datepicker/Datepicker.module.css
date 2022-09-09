@@ -78,7 +78,7 @@ td {
 }
 tr {
     height: 8px;
-    border: 2px solid black;
+    border: 1px solid #ddd;
 }
 .day {
     background-color: #77b4db;

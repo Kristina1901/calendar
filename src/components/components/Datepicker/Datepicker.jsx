@@ -1,7 +1,7 @@
 import s from './Datepicker.module.css';
 import { nanoid } from 'nanoid';
 import { useState, useEffect } from 'react';
-import moment from 'moment';
+import {getDate} from '../../hooks/useYear';
 const monthName = [
   'January',
   'February',
@@ -16,7 +16,7 @@ const monthName = [
   'November',
   'December',
 ];
-const DatePicker = ({ date, setDate }) => {
+const DatePicker = ({ setdropdown, setArray }) => {
   const today = new Date();
   const [year, setYear] = useState(today.getFullYear());
   const [month, setMonth] = useState(null);
@@ -26,10 +26,10 @@ const DatePicker = ({ date, setDate }) => {
     }
     if (month !== null) {
       let time = `${month}${year}`;
-      let formattedYear = moment(new Date(time)).format('YYYY');
-      let formattedMonts = moment(new Date(time)).format('MM');
-      getMonts(formattedYear, formattedMonts);
-    }
+      const correctTime = new Date(time)
+      setdropdown(false)
+      setArray(getDate(correctTime))
+   }
   }, [month]);
   const getPrevMonth = () => {
     setYear(prev => prev - 1);
@@ -44,17 +44,6 @@ const DatePicker = ({ date, setDate }) => {
     let last = monthName.slice(9, 12);
     let main = [arr, another, next, last];
     return main;
-  }
-  function getMonts(y, m) {
-    var monthIndex = m - 1;
-    var names = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-    var date = new Date(year, monthIndex, 1);
-    var result = [];
-    while (date.getMonth() === monthIndex) {
-      result.push(date.getDate() + '-' + names[date.getDay()]);
-      date.setDate(date.getDate() + 1);
-    }
-    return result;
   }
   return (
     <div className={s.container}>
@@ -81,7 +70,7 @@ const DatePicker = ({ date, setDate }) => {
             return (
               <tr key={nanoid()}>
                 {item.map((item, index) => (
-                  <td key={index} onClick={() => setMonth(item)}>
+                  <td key={index} onClick={() => (setMonth(item))}>
                     {item}
                   </td>
                 ))}

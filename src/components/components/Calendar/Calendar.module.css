@@ -15,7 +15,8 @@
     margin-top: 20px;
     border-collapse: collapse;
     table-layout: fixed; 
-    background: linear-gradient(to right, #314755, #26a0da);
+    background: linear-gradient(to right, #52c234, #061700);
+    border: 1px solid #ddd;
     
 }
 .cell {
@@ -121,4 +122,7 @@ p {
     color: white;
     font-size: 30px;
     font-weight: 700
+}
+tr{
+    border: 1px solid #ddd;
 }
