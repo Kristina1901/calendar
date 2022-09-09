@@ -1,35 +1,35 @@
-import useCalendar from '../../hooks/useCalendar';
 import moment from 'moment';
 import s from './Calendar.module.css';
 import Modal from '../Modal/Modal';
 import DatePicker from '../Datepicker/Datepicker';
+import {getDate} from '../../hooks/useYear';
 import { useState, useEffect, useRef } from 'react';
 const Calendar = () => {
-  const {
-    calendarRows,
-    selectedDate,
-    todayFormatted,
-    getNextMonth,
-    getPrevMonth,
-  } = useCalendar();
-   const refContainer = useRef(calendarRows);
-  const [open, setOpen] = useState(false);
-  const [array, setArray] = useState(refContainer.current);
   const [dropdown, setdropdown] = useState(false);
   const [some, setSome] = useState(false);
   const [fieldTitle, setFieltitle] = useState('');
   const [fieldMessage, setFielddMessage] = useState('');
   const [fieldDay, setFielddDay] = useState('');
   const [fieldTime, setFielddTime] = useState('');
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const refContainer = useRef(getDate(selectedDate));
+  const [open, setOpen] = useState(false);
+  const [array, setArray] = useState(refContainer.current);
+  const todayFormatted = `${new Date().getFullYear()}-${
+    new Date().getMonth() + 1
+  }-${new Date().getDate()}`
+    .split(/\s+/)
+    .join('');
 
   useEffect(() => {
     const today = new Date();
     if (
-      JSON.stringify(array) === JSON.stringify(refContainer.current) &&
+      JSON.stringify(getDate(selectedDate)) === JSON.stringify(refContainer.current) &&
       localStorage.getItem(today.getMonth()) === null
     ) {
-      setArray(calendarRows)
+      setArray(refContainer.current)
      
+         
       return;
     }
      if (
@@ -40,7 +40,7 @@ const Calendar = () => {
      
       
     }
-    if (JSON.stringify(refContainer.current) !== JSON.stringify(calendarRows)
+    if (JSON.stringify(refContainer.current) !== JSON.stringify(getDate(selectedDate))
      &&
       selectedDate.getMonth() !== today.getMonth()
     ) {
@@ -48,19 +48,20 @@ const Calendar = () => {
         localStorage.getItem(selectedDate.getMonth().toString())
       );
       if (k === null) {
-        setArray(calendarRows);
+        setArray(getDate(selectedDate));
+        
        
         
       } else {
         setArray(k);
-        
+       
         
       }
     }
-    if (JSON.stringify(refContainer.current) === JSON.stringify(calendarRows) && localStorage.getItem(today.getMonth()) !== null) {
+    if (JSON.stringify(refContainer.current) === JSON.stringify(getDate(selectedDate)) && localStorage.getItem(today.getMonth()) !== null) {
       setArray(JSON.parse(localStorage.getItem(today.getMonth())))
     }
-    if (JSON.stringify(refContainer.current) === JSON.stringify(calendarRows) && localStorage.getItem(today.getMonth()) === null) {
+    if (JSON.stringify(refContainer.current) === JSON.stringify(getDate(selectedDate)) && localStorage.getItem(today.getMonth()) === null) {
       setArray(refContainer.current)
     }
     
@@ -68,7 +69,7 @@ const Calendar = () => {
     
   }, [selectedDate]);
   const findKey = (key, title, month, message, tictac) => {
-    let el = Object.values(calendarRows)
+    let el = Object.values(array)
       .flat()
       .find(item => item.date === key);
     setArray(prev => {
@@ -114,6 +115,19 @@ const Calendar = () => {
       return;
     }
   }
+  const getPrevMonth = () => {
+    setSelectedDate(
+      prevValue =>
+        new Date(prevValue.getFullYear(), prevValue.getMonth() - 1, 1)
+       
+    );
+  };
+  const getNextMonth = () => {
+    setSelectedDate(
+      prevValue =>
+        new Date(prevValue.getFullYear(), prevValue.getMonth() + 1, 1)
+    );
+  };
   return (
     <div className={s.container}>
       <div className={s.month}>
@@ -122,13 +136,13 @@ const Calendar = () => {
         </div>
         <div className={s.wrapperButton}>
           <button className={s.prev} onClick={getPrevMonth}></button>
-          <p className={s.currentDate}>{`${moment(new Date(array[4][0].date)).format('MMMM  YYYY')}`}</p>
+          <p className={s.currentDate}>{`${moment(new Date(selectedDate)).format('MMMM  YYYY')}`}</p>
           <button className={s.next} onClick={getNextMonth}></button>
           <button
             className={s.pick}
             onClick={() =>setdropdown(true)}
            ></button>
-          {dropdown && <DatePicker setArray={setArray} setdropdown={setdropdown}/>}
+          {dropdown && <DatePicker setArray={setArray} setdropdown={setdropdown} setSelectedDate={setSelectedDate}/>}
         </div>
       </div>
       <table className={s.table}>

@@ -16,7 +16,7 @@ const monthName = [
   'November',
   'December',
 ];
-const DatePicker = ({ setdropdown, setArray }) => {
+const DatePicker = ({ setdropdown, setArray, setSelectedDate }) => {
   const today = new Date();
   const [year, setYear] = useState(today.getFullYear());
   const [month, setMonth] = useState(null);
@@ -28,6 +28,7 @@ const DatePicker = ({ setdropdown, setArray }) => {
       let time = `${month}${year}`;
       const correctTime = new Date(time)
       setdropdown(false)
+      setSelectedDate(correctTime)
       setArray(getDate(correctTime))
    }
   }, [month]);
