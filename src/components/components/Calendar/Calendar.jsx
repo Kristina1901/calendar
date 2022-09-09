@@ -6,7 +6,6 @@ import DatePicker from '../Datepicker/Datepicker';
 import { useState, useEffect, useRef } from 'react';
 const Calendar = () => {
   const {
-    today,
     calendarRows,
     selectedDate,
     todayFormatted,
@@ -14,9 +13,9 @@ const Calendar = () => {
     getNextMonth,
     getPrevMonth,
   } = useCalendar();
-  const refContainer = useRef(calendarRows);
+   const refContainer = useRef(calendarRows);
   const [open, setOpen] = useState(false);
-  const [array, setArray] = useState(calendarRows);
+  const [array, setArray] = useState(refContainer.current);
   const [dropdown, setdropdown] = useState(false);
   const [date, setDate] = useState(null);
   const [disabled, setDisable] = useState(false);
@@ -27,10 +26,12 @@ const Calendar = () => {
   const [fieldTime, setFielddTime] = useState('');
 
   useEffect(() => {
+    const today = new Date();
     if (
-      array === refContainer.current &&
+      JSON.stringify(array) === JSON.stringify(refContainer.current) &&
       localStorage.getItem(today.getMonth()) === null
     ) {
+      console.log('ji')
       return;
     }
     if (date !== null) {
@@ -42,9 +43,10 @@ const Calendar = () => {
       selectedDate.getMonth() === today.getMonth()
     ) {
       setArray(JSON.parse(localStorage.getItem(today.getMonth())));
+      console.log('vv')
     }
-    if (
-      refContainer.current !== calendarRows &&
+    if (JSON.stringify(refContainer.current) !== JSON.stringify(calendarRows)
+     &&
       selectedDate.getMonth() !== today.getMonth()
     ) {
       let k = JSON.parse(
@@ -52,8 +54,10 @@ const Calendar = () => {
       );
       if (k === null) {
         setArray(calendarRows);
+        console.log('kkk')
       } else {
         setArray(k);
+        console.log('jjj')
       }
     }
   }, [selectedDate, date]);
