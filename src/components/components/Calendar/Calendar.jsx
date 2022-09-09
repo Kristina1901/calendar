@@ -116,7 +116,7 @@ const Calendar = () => {
         </div>
         <div className={s.wrapperButton}>
           <button className={s.prev} onClick={getPrevMonth}></button>
-          <p className={s.currentDate}>{`${moment(array[1][0].date).format('MMMM  YYYY')}`}</p>
+          <p className={s.currentDate}>{`${moment(array[4][0].date).format('MMMM  YYYY')}`}</p>
           <button className={s.next} onClick={getNextMonth}></button>
           <button
             className={s.pick}
