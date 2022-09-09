@@ -31,7 +31,7 @@ const Calendar = () => {
       JSON.stringify(array) === JSON.stringify(refContainer.current) &&
       localStorage.getItem(today.getMonth()) === null
     ) {
-      console.log('ji')
+      setArray(calendarRows)
       return;
     }
     if (date !== null) {
@@ -43,7 +43,7 @@ const Calendar = () => {
       selectedDate.getMonth() === today.getMonth()
     ) {
       setArray(JSON.parse(localStorage.getItem(today.getMonth())));
-      console.log('vv')
+      
     }
     if (JSON.stringify(refContainer.current) !== JSON.stringify(calendarRows)
      &&
@@ -54,12 +54,18 @@ const Calendar = () => {
       );
       if (k === null) {
         setArray(calendarRows);
-        console.log('kkk')
+        
       } else {
         setArray(k);
-        console.log('jjj')
+        
       }
     }
+    if (JSON.stringify(refContainer.current) === JSON.stringify(calendarRows)) {
+      setArray(refContainer.current)
+    }
+    
+   
+    
   }, [selectedDate, date]);
   const findKey = (key, title, month, message, tictac) => {
     let el = Object.values(calendarRows)
