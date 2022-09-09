@@ -110,6 +110,7 @@ p {
 }
 .currentDate {
     color: white;
+    min-width: 120px;
 }
 .dateNumber {
     color: white;
