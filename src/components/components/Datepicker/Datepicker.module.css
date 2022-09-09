@@ -6,8 +6,9 @@
     z-index: 100;
     align-items: center;
     position: fixed;
-    background-color: #ffff7a;
-    top:70px
+    background-color:white;
+    top:70px;
+    border-radius: 5px;
 }
 .month {
     display: flex;
@@ -17,8 +18,7 @@
     text-align: center;
 }
 .table {
-    border: 1px solid black;
-    text-align: center;
+   text-align: center;
     padding: 5px;
     display: block;
         
@@ -47,6 +47,7 @@
     margin-right: 5px;
     cursor: pointer;
     border-radius: 5px;
+    color:  white;
    
     
 }
@@ -58,6 +59,7 @@
     margin-left: 5px;
     cursor: pointer;
     border-radius: 5px;
+    color:  white;
    
     
 }
@@ -74,7 +76,13 @@ p {
 }
 td {
     font-size: 12px;
-    border: 2px solid black;
+    padding: 5px;
+    border-radius: 5px;
+  
+   
+}
+td:hover {
+    background-color: #d462a0;
 }
 tr {
     height: 8px;
@@ -82,4 +90,7 @@ tr {
 }
 .day {
     background-color: #77b4db;
+}
+.monthElem {
+    cursor: pointer;
 }

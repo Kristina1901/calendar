@@ -55,14 +55,14 @@ const DatePicker = ({ setdropdown, setArray, setSelectedDate }) => {
             onClick={() => {
               getPrevMonth();
             }}
-          ></button>
+          >-</button>
           <p>{year}</p>
           <button
             className={s.next}
             onClick={() => {
               getNextMonth();
             }}
-          ></button>
+          >+</button>
         </div>
       </div>
       <table className={s.table}>
@@ -71,7 +71,7 @@ const DatePicker = ({ setdropdown, setArray, setSelectedDate }) => {
             return (
               <tr key={nanoid()}>
                 {item.map((item, index) => (
-                  <td key={index} onClick={() => (setMonth(item))}>
+                  <td key={index} onClick={() => (setMonth(item))} className={s.monthElem}>
                     {item}
                   </td>
                 ))}
