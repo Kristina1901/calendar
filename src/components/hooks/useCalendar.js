@@ -71,8 +71,8 @@ function useCalendar(monthNames = monthArray) {
                 .join(''),
               value: prevMonthStartingPoint,
               text: '',
-              info:'',
-              hours: '' 
+              info: '',
+              hours: '',
             },
           ];
           prevMonthStartingPoint++;
@@ -88,8 +88,8 @@ function useCalendar(monthNames = monthArray) {
                 .join(''),
               value: currentMonthCounter,
               text: '',
-              info:'',
-              hours: '' 
+              info: '',
+              hours: '',
             },
           ];
           currentMonthCounter++;
@@ -106,8 +106,8 @@ function useCalendar(monthNames = monthArray) {
               .join(''),
             value: currentMonthCounter,
             text: '',
-            info:'',
-            hours: '' 
+            info: '',
+            hours: '',
           },
         ];
         currentMonthCounter++;
@@ -145,6 +145,7 @@ function useCalendar(monthNames = monthArray) {
         new Date(prevValue.getFullYear(), prevValue.getMonth() + 1, 1)
     );
   };
+
   return {
     today,
     monthNames,
@@ -153,6 +154,7 @@ function useCalendar(monthNames = monthArray) {
     selectedDate,
     getPrevMonth,
     getNextMonth,
+    setSelectedDate,
   };
 }
 export default useCalendar;

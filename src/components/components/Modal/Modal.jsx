@@ -17,7 +17,17 @@ const customStyles = {
   position: 'absolute',
 };
 
-function Modal({ trigger, onClose, findKey, getUpdate, some, fieldTitle, fieldMessage,fieldDay,fieldTime}) {
+function Modal({
+  trigger,
+  onClose,
+  findKey,
+  getUpdate,
+  some,
+  fieldTitle,
+  fieldMessage,
+  fieldDay,
+  fieldTime,
+}) {
   return (
     <div>
       <Rodal
@@ -26,10 +36,19 @@ function Modal({ trigger, onClose, findKey, getUpdate, some, fieldTitle, fieldMe
         className={s.rodalMask}
         customStyles={customStyles}
       >
-      <div className={s.button} onClick={onClose}></div>
-      {some=== true? <FullForm fieldTitle={fieldTitle} fieldMessage={fieldMessage} fieldDay={fieldDay} 
-      fieldTime={fieldTime} findKey={findKey} onClose={onClose}/> 
-      : <Form findKey={findKey} getUpdate={getUpdate}/>}
+        <div className={s.button} onClick={onClose}></div>
+        {some === true ? (
+          <FullForm
+            fieldTitle={fieldTitle}
+            fieldMessage={fieldMessage}
+            fieldDay={fieldDay}
+            fieldTime={fieldTime}
+            findKey={findKey}
+            onClose={onClose}
+          />
+        ) : (
+          <Form findKey={findKey} getUpdate={getUpdate} />
+        )}
       </Rodal>
     </div>
   );

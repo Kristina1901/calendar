@@ -21,14 +21,17 @@ const Calendar = () => {
   const [date, setDate] = useState(null);
   const [disabled, setDisable] = useState(false);
   const [some, setSome] = useState(false);
-  const[fieldTitle, setFieltitle] = useState('')
-  const[fieldMessage, setFielddMessage] = useState('')
-  const[fieldDay, setFielddDay] = useState('')
-  const[fieldTime, setFielddTime] = useState('')
+  const [fieldTitle, setFieltitle] = useState('');
+  const [fieldMessage, setFielddMessage] = useState('');
+  const [fieldDay, setFielddDay] = useState('');
+  const [fieldTime, setFielddTime] = useState('');
 
   useEffect(() => {
-    if(array=== refContainer.current && localStorage.getItem(today.getMonth()) === null) {
-      return
+    if (
+      array === refContainer.current &&
+      localStorage.getItem(today.getMonth()) === null
+    ) {
+      return;
     }
     if (date !== null) {
       setDisable(true);
@@ -39,7 +42,6 @@ const Calendar = () => {
       selectedDate.getMonth() === today.getMonth()
     ) {
       setArray(JSON.parse(localStorage.getItem(today.getMonth())));
-     
     }
     if (
       refContainer.current !== calendarRows &&
@@ -54,8 +56,7 @@ const Calendar = () => {
         setArray(k);
       }
     }
-   
-  }, [selectedDate,date]);
+  }, [selectedDate, date]);
   const findKey = (key, title, month, message, tictac) => {
     let el = Object.values(calendarRows)
       .flat()
@@ -69,8 +70,7 @@ const Calendar = () => {
               ...num,
               text: title,
               info: message,
-              hours: tictac
-
+              hours: tictac,
             });
           } else {
             return (num = {
@@ -89,27 +89,23 @@ const Calendar = () => {
   };
 
   function closeModal() {
-    setSome(false)
+    setSome(false);
     setOpen(!open);
   }
   function openDropdown() {
     setdropdown(true);
   }
   function getFormField(item) {
-    if(item.text!==undefined && item.text!=='') {
-      closeModal()
-      setSome(true)
-      setFieltitle(item.text)
-      setFielddMessage(item.info)
-      setFielddDay(item.date)
-      setFielddTime(item.hours)
-         
+    if (item.text !== undefined && item.text !== '') {
+      closeModal();
+      setSome(true);
+      setFieltitle(item.text);
+      setFielddMessage(item.info);
+      setFielddDay(item.date);
+      setFielddTime(item.hours);
+    } else {
+      return;
     }
-    else {
-     return
-    }
-    
-    
   }
   return (
     <div className={s.container}>
@@ -138,21 +134,33 @@ const Calendar = () => {
               <tr key={cols[0].date}>
                 {cols.map(col =>
                   col.date === todayFormatted ? (
-                    <td key={todayFormatted} className={s.today} onClick={()=> getFormField(col)}>
+                    <td
+                      key={todayFormatted}
+                      className={s.today}
+                      onClick={() => getFormField(col)}
+                    >
                       <div className={s.info}>
                         <p className={s.dateNumber}>{col.value}</p>
                         {col.value && (
-                          <p className={s.day}>{moment(new Date(col.date)).format('dd')}</p>
+                          <p className={s.day}>
+                            {moment(new Date(col.date)).format('dd')}
+                          </p>
                         )}
                       </div>
                       {col.text && <p className={s.notice}>{col.text}</p>}
                     </td>
                   ) : (
-                    <td key={col.date} className={s.cell} onClick={()=> getFormField(col)}>
+                    <td
+                      key={col.date}
+                      className={s.cell}
+                      onClick={() => getFormField(col)}
+                    >
                       <div className={s.info}>
                         <p className={s.dateNumber}>{col.value}</p>
                         {col.value && (
-                          <p className={s.day}>{moment(new Date(col.date)).format('dd')}</p>
+                          <p className={s.day}>
+                            {moment(new Date(col.date)).format('dd')}
+                          </p>
                         )}
                       </div>
                       {col.text && <p className={s.notice}>{col.text}</p>}
@@ -164,8 +172,16 @@ const Calendar = () => {
           })}
         </tbody>
       </table>
-      <Modal trigger={open} onClose={closeModal} findKey={findKey} some={some} 
-      fieldTitle={fieldTitle} fieldMessage={fieldMessage} fieldDay={fieldDay} fieldTime={fieldTime}/>
+      <Modal
+        trigger={open}
+        onClose={closeModal}
+        findKey={findKey}
+        some={some}
+        fieldTitle={fieldTitle}
+        fieldMessage={fieldMessage}
+        fieldDay={fieldDay}
+        fieldTime={fieldTime}
+      />
     </div>
   );
 };
