@@ -29,13 +29,15 @@ const Calendar = () => {
       localStorage.getItem(today.getMonth()) === null
     ) {
       setArray(calendarRows)
+     
       return;
     }
      if (
       localStorage.getItem(today.getMonth()) !== JSON.stringify(array) &&
       selectedDate.getMonth() === today.getMonth()
     ) {
-      setArray(JSON.parse(localStorage.getItem(today.getMonth())));
+      setArray(JSON.parse(localStorage.getItem(selectedDate.getMonth())));
+     
       
     }
     if (JSON.stringify(refContainer.current) !== JSON.stringify(calendarRows)
@@ -47,13 +49,18 @@ const Calendar = () => {
       );
       if (k === null) {
         setArray(calendarRows);
+       
         
       } else {
         setArray(k);
         
+        
       }
     }
-    if (JSON.stringify(refContainer.current) === JSON.stringify(calendarRows)) {
+    if (JSON.stringify(refContainer.current) === JSON.stringify(calendarRows) && localStorage.getItem(today.getMonth()) !== null) {
+      setArray(JSON.parse(localStorage.getItem(today.getMonth())))
+    }
+    if (JSON.stringify(refContainer.current) === JSON.stringify(calendarRows) && localStorage.getItem(today.getMonth()) === null) {
       setArray(refContainer.current)
     }
     
@@ -115,7 +122,7 @@ const Calendar = () => {
         </div>
         <div className={s.wrapperButton}>
           <button className={s.prev} onClick={getPrevMonth}></button>
-          <p className={s.currentDate}>{`${moment(array[4][0].date).format('MMMM  YYYY')}`}</p>
+          <p className={s.currentDate}>{`${moment(new Date(array[4][0].date)).format('MMMM  YYYY')}`}</p>
           <button className={s.next} onClick={getNextMonth}></button>
           <button
             className={s.pick}
