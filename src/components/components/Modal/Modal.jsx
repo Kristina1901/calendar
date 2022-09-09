@@ -7,7 +7,7 @@ import s from './Modal.module.css';
 const customStyles = {
   width: '300px',
   padding: '20px',
-  height: '70%',
+  height: '50%',
   background: '#F8F8F7',
   borderRadius: '20px',
   left: '0',
