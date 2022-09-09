@@ -21,53 +21,48 @@ const Calendar = () => {
     .split(/\s+/)
     .join('');
 
-  useEffect(() => {
-    const today = new Date();
-    if (
-      JSON.stringify(getDate(selectedDate)) === JSON.stringify(refContainer.current) &&
-      localStorage.getItem(today.getMonth()) === null
-    ) {
-      setArray(refContainer.current)
-     
-         
-      return;
-    }
-     if (
-      localStorage.getItem(today.getMonth()) !== JSON.stringify(array) &&
-      selectedDate.getMonth() === today.getMonth()
-    ) {
-      setArray(JSON.parse(localStorage.getItem(selectedDate.getMonth())));
-     
-      
-    }
-    if (JSON.stringify(refContainer.current) !== JSON.stringify(getDate(selectedDate))
-     &&
-      selectedDate.getMonth() !== today.getMonth()
-    ) {
-      let k = JSON.parse(
-        localStorage.getItem(selectedDate.getMonth().toString())
-      );
-      if (k === null) {
-        setArray(getDate(selectedDate));
-        
+    useEffect(() => {
+      const today = new Date();
+      if (
+        JSON.stringify(getDate(selectedDate)) === JSON.stringify(refContainer.current) &&
+        localStorage.getItem(moment(new Date(selectedDate)).format('YYYY-MM')) === null
+      ) {
+        setArray(refContainer.current)
        
-        
-      } else {
-        setArray(k);
+           
+        return;
+      }
+       if (
+        localStorage.getItem(moment(new Date(today)).format('YYYY-MM')) !== JSON.stringify(array) &&
+        moment(new Date(selectedDate)).format('YYYY-MM') ===  moment(new Date(today)).format('YYYY-MM')
+      ) {
+        setArray(JSON.parse(localStorage.getItem(moment(new Date(selectedDate)).format('YYYY-MM'))));
        
         
       }
-    }
-    if (JSON.stringify(refContainer.current) === JSON.stringify(getDate(selectedDate)) && localStorage.getItem(today.getMonth()) !== null) {
-      setArray(JSON.parse(localStorage.getItem(today.getMonth())))
-    }
-    if (JSON.stringify(refContainer.current) === JSON.stringify(getDate(selectedDate)) && localStorage.getItem(today.getMonth()) === null) {
-      setArray(refContainer.current)
-    }
-    
-   
-    
-  }, [selectedDate]);
+      if (JSON.stringify(refContainer.current) !== JSON.stringify(getDate(selectedDate))
+       &&
+        selectedDate.getMonth() !== today.getMonth()
+      ) {
+        let k = JSON.parse(
+          localStorage.getItem(moment(new Date(selectedDate)).format('YYYY-MM'))
+        );
+        if (k === null) {
+          setArray(getDate(selectedDate));
+         
+          
+         
+          
+        } else {
+          setArray(k);
+         
+         
+        }
+      }
+            
+     
+      
+    }, [selectedDate]);
   const findKey = (key, title, month, message, tictac) => {
     let el = Object.values(array)
       .flat()
@@ -88,6 +83,7 @@ const Calendar = () => {
               ...num,
             });
           }
+         
         });
 
         return array;

@@ -28,9 +28,8 @@ export default function FullForm({
   const handleSubmit = event => {
     event.preventDefault();
     let query = moment(new Date(date)).format('YYYY-M-D');
-    let mon = new Date(date);
-    let dtm = mon.getMonth();
-    findKey(query, title, dtm, message, time);
+    let mon = moment(new Date(date)).format('YYYY-MM');
+   findKey(query, title, mon, message, time);
     onClose(() => false);
   };
   const handleDelet = () => {
@@ -38,9 +37,8 @@ export default function FullForm({
     setMessage('');
     setTime('');
     let query = moment(new Date(date)).format('YYYY-M-D');
-    let mon = new Date(date);
-    let dtm = mon.getMonth();
-    findKey(query, '', dtm, '', '');
+    let mon = moment(new Date(date)).format('YYYY-MM');
+    findKey(query, '', mon, '', '');
   };
 
   return (
