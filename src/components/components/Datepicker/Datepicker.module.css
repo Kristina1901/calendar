@@ -6,9 +6,9 @@
     z-index: 100;
     align-items: center;
     position: fixed;
-    background-color:white;
+    background: linear-gradient(90deg, #ffffff,#ffffff,#d4caff);
     top:70px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 .month {
     display: flex;
@@ -78,11 +78,10 @@ td {
     font-size: 12px;
     padding: 5px;
     border-radius: 5px;
-  
-   
+      
 }
 td:hover {
-    background-color: #d462a0;
+    background:linear-gradient(90deg, #e2ef54,#ff5c66,#6248d5);
 }
 tr {
     height: 8px;

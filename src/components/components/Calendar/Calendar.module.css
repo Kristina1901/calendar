@@ -16,9 +16,10 @@
     margin-top: 20px;
     border-collapse: collapse;
     table-layout: fixed; 
-    background: linear-gradient(to right, #52c234, #061700);
+    background: #2c2c2d;
     border: 1px solid #ddd;
     margin-top: 30px;
+    
     
 }
 .cell {
@@ -37,7 +38,7 @@
     height: 80px;
     border: 1px solid #ddd;
     padding: 5px;
-    background: linear-gradient(to right, #e65c00, #f9d423);
+   background:  linear-gradient(90deg, #1a3f69,#5076a1,#82a7d0,#5076a1,#1a3f69);
    
 }
 .prev {
@@ -115,6 +116,9 @@ p {
     color: white;
     min-width: 120px;
     text-align: center;
+    font-family: Qwitcher Grypen;
+    font-size: 30px;
+    font-weight: 700
 }
 .dateNumber {
     color: white;
