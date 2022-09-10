@@ -59,18 +59,56 @@ const Calendar = () => {
         setArray(k);
       }
     }
-  }, [selectedDate]);
+  }, [selectedDate,]);
   const findKey = (key, title, month, message, tictac) => {
-   let newFormat = moment(new Date(key)).format('YYYY-M-D');
-    if(moment(new Date(key)).format('YYYY-MM') === moment(new Date(selectedDate)).format('YYYY-MM')) {
-    let el = Object.values(array)
-      .flat()
-      .find(item => item.date === newFormat);
-    setArray(prev => {
-      const newState = Object.values(prev).map(el => cheaking(el));
+    let newFormat = moment(new Date(key)).format('YYYY-M-D');
+    if (
+      moment(new Date(key)).format('YYYY-MM') ===
+      moment(new Date(selectedDate)).format('YYYY-MM')
+    ) {
+      let el = Object.values(array)
+        .flat()
+        .find(item => item.date === newFormat);
+      setArray(prev => {
+        const newState = Object.values(prev).map(el => cheaking(el));
+        function cheaking(item) {
+          let array = item.map(function (num) {
+            if (num.date === el.date) {
+              return (num = {
+                ...num,
+                text: title,
+                info: message,
+                hours: tictac,
+              });
+            } else {
+              return (num = {
+                ...num,
+              });
+            }
+          });
+
+          return array;
+        }
+
+        let storageObj = { ...newState };
+        console.log(storageObj);
+        localStorage.setItem(`${month}`, JSON.stringify(storageObj));
+        return { ...newState };
+      });
+    }
+    if (
+      moment(new Date(key)).format('YYYY-MM') !==
+      moment(new Date(selectedDate)).format('YYYY-MM')
+    ) {
+      let obj = Object.values(getDate(new Date(key)))
+        .flat()
+        .find(item => item.date === newFormat);
+      const newState = Object.values(getDate(new Date(key))).map(el =>
+        cheaking(el)
+      );
       function cheaking(item) {
         let array = item.map(function (num) {
-          if (num.date === el.date) {
+          if (num.date === obj.date) {
             return (num = {
               ...num,
               text: title,
@@ -87,41 +125,10 @@ const Calendar = () => {
         return array;
       }
 
-      let storageObj = {...newState };
-      console.log(storageObj)
-      localStorage.setItem(`${month}`, JSON.stringify( storageObj));
-      return {...newState};
-    });
-  }
-  if(moment(new Date(key)).format('YYYY-MM') !== moment(new Date(selectedDate)).format('YYYY-MM')) {
-    let obj = Object.values(getDate(new Date(key)))
-    .flat()
-    .find(item => item.date === newFormat);
-    const newState = Object.values(getDate(new Date(key))).map(el => cheaking(el));
-    function cheaking(item) {
-      let array = item.map(function (num) {
-        if (num.date === obj.date) {
-          return (num = {
-            ...num,
-            text: title,
-            info: message,
-            hours: tictac,
-          });
-        } else {
-          return (num = {
-            ...num,
-          });
-        }
-      });
-
-      return array;
+      let storageObj = { ...newState };
+      localStorage.setItem(`${month}`, JSON.stringify(storageObj));
+      return { ...newState };
     }
-
-    let storageObj = { ...newState };
-    localStorage.setItem(`${month}`, JSON.stringify( storageObj));
-    return { ...newState };
-  
-  }
   };
 
   function closeModal() {
@@ -177,10 +184,10 @@ const Calendar = () => {
       <table className={s.table}>
         <tbody>
           {Object.values(array).map(cols => {
-           return (
+            return (
               <tr key={cols[0].date}>
                 {cols.map(col =>
-                 col.date === todayFormatted ? (
+                  col.date === todayFormatted ? (
                     <td
                       key={todayFormatted}
                       className={s.today}
@@ -190,7 +197,7 @@ const Calendar = () => {
                         <p className={s.dateNumber}>{col.value}</p>
                         {col.value && (
                           <p className={s.day}>
-                              {moment(new Date(col.date)).format('dd').toString()}
+                            {moment(new Date(col.date)).format('dd').toString()}
                           </p>
                         )}
                       </div>

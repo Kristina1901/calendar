@@ -11,7 +11,7 @@
     justify-content: space-between
 }
 .table {
-    min-width: 700px;
+    min-width: 730px;
     min-height: 450px;
     margin-top: 20px;
     border-collapse: collapse;
@@ -23,7 +23,7 @@
     
 }
 .cell {
-    width: 30px;
+    width: 3%;
     height: 80px;
     border: 1px solid #ddd;
     padding: 5px;
@@ -34,7 +34,7 @@
     justify-content: space-between;
 }
 .today {
-    width: 30px;
+    width: 3%;
     height: 80px;
     border: 1px solid #ddd;
     padding: 5px;
