@@ -47,9 +47,8 @@ export default function Form({ findKey }) {
   }
   const handleSubmit = event => {
     event.preventDefault();
-    let query = moment(new Date(date)).format('YYYY-M-D');
     let mon = moment(new Date(date)).format('YYYY-MM');
-   findKey(query, title, mon, message, time);
+   findKey(date, title, mon, message, time);
     setTitle('');
     setMessage('');
     setDate('');
