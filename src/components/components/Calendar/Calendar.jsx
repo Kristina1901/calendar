@@ -177,10 +177,10 @@ const Calendar = () => {
       <table className={s.table}>
         <tbody>
           {Object.values(array).map(cols => {
-            return (
+           return (
               <tr key={cols[0].date}>
                 {cols.map(col =>
-                  col.date === todayFormatted ? (
+                 col.date === todayFormatted ? (
                     <td
                       key={todayFormatted}
                       className={s.today}
@@ -190,7 +190,7 @@ const Calendar = () => {
                         <p className={s.dateNumber}>{col.value}</p>
                         {col.value && (
                           <p className={s.day}>
-                            {moment(new Date(col.date)).format('dd')}
+                              {moment(new Date(col.date)).format('dd').toString()}
                           </p>
                         )}
                       </div>
