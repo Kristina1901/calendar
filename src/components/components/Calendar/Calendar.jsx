@@ -197,7 +197,7 @@ const Calendar = () => {
                         <p className={s.dateNumber}>{col.value}</p>
                         {col.value && (
                           <p className={s.day}>
-                            {moment(new Date(col.date)).format('dd').toString()}
+                              {moment(new Date(col.date)).format('dd').toString()}
                           </p>
                         )}
                       </div>
@@ -213,7 +213,7 @@ const Calendar = () => {
                         <p className={s.dateNumber}>{col.value}</p>
                         {col.value && (
                           <p className={s.day}>
-                            {moment(new Date(col.date)).format('dd')}
+                              {moment(new Date(col.date)).format('dd').toString()}
                           </p>
                         )}
                       </div>
